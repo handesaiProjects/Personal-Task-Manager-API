@@ -1,5 +1,5 @@
 const Task = require('../models/Task');
-const asyncHandler = require('../middleware/errorHandler').asyncHandler;
+const { asyncHandler } = require('../middleware/errorHandler');
 const ErrorResponse = require('../utils/errorResponse');
 
 // @desc    Get all tasks

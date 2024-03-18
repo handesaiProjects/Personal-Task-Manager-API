@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const asyncHandler = require('./errorHandler').asyncHandler;
+const { asyncHandler } = require('./errorHandler');
 const ErrorResponse = require('../utils/errorResponse');
 
 // Middleware to protect routes and ensure they are accessed by authenticated users only

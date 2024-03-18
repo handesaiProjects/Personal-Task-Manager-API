@@ -1,5 +1,5 @@
 const Category = require('../models/Category');
-const asyncHandler = require('../middleware/errorHandler').asyncHandler;
+const { asyncHandler } = require('../middleware/errorHandler');
 const ErrorResponse = require('../utils/errorResponse');
 
 // @desc    Create a new category
