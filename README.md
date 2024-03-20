@@ -53,56 +53,38 @@ The server will run on `http://localhost:3000` by default.
 
 ## API Endpoints
 
-### Authentication
+### Public Endpoints
 
-- **POST /users/signup**: Register a new user.
-- **POST /users/login**: Login an existing user.
+These endpoints do not require authentication.
 
-### Users
+- **POST /api/users/register**: Register a new user.
+- **POST /api/users/login**: Login an existing user.
 
-- **GET /users**: Retrieve all users (requires authentication).
-- **GET /users/:id**: Retrieve a single user by ID (requires authentication).
-- **PATCH /users/:id**: Update user details (requires authentication).
-- **DELETE /users/:id**: Delete a user (requires authentication).
+### Protected Endpoints
 
-### Tasks
+All other endpoints require authentication. Ensure to include a valid JWT in the Authorization header of your requests.
 
-- **POST /tasks**: Create a new task (requires authentication).
-- **GET /tasks**: Retrieve all tasks (requires authentication).
-- **GET /tasks/:id**: Retrieve a task by ID (requires authentication).
-- **PATCH /tasks/:id**: Update a task (requires authentication).
-- **DELETE /tasks/:id**: Delete a task (requires authentication).
+#### Users
 
-### Categories
+- **GET /api/users/profile**: Retrieve the current user's profile.
+- **PATCH /api/users/profile**: Update the current user's profile.
+- **DELETE /api/users/profile**: Delete the current user's profile.
 
-- **POST /categories**: Create a new category (requires authentication).
-- **GET /categories**: Retrieve all categories (requires authentication).
-- **GET /categories/:id**: Retrieve a category by ID (requires authentication).
-- **PATCH /categories/:id**: Update a category (requires authentication).
-- **DELETE /categories/:id**: Delete a category (requires authentication).
+#### Tasks
 
-## Models
+- **POST /api/tasks**: Create a new task.
+- **GET /api/tasks**: Retrieve all tasks for the logged-in user.
+- **GET /api/tasks/:id**: Retrieve a task by ID.
+- **PATCH /api/tasks/:id**: Update a task.
+- **DELETE /api/tasks/:id**: Delete a task.
 
-### User
+#### Categories
 
-- **username**: String, required
-- **email**: String, required, unique
-- **password**: String, required
-
-### Task
-
-- **title**: String, required
-- **description**: String, required
-- **status**: Enum ['pending', 'in progress', 'completed'], default 'pending'
-- **dueDate**: Date, required
-- **user**: ObjectId, reference to User, required
-- **category**: ObjectId, reference to Category
-
-### Category
-
-- **name**: String, required, unique
-- **description**: String, required
-- **user**: ObjectId, reference to User, required
+- **POST /api/categories**: Create a new category.
+- **GET /api/categories**: Retrieve all categories for the logged-in user.
+- **GET /api/categories/:id**: Retrieve a category by ID.
+- **PATCH /api/categories/:id**: Update a category.
+- **DELETE /api/categories/:id**: Delete a category.
 
 ## Error Handling
 

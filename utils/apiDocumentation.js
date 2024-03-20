@@ -9,7 +9,7 @@
  */
 
 /**
- * @api {post} /api/v1/auth/register Register a New User
+ * @api {post} /api/users/register Register a New User
  * @apiDescription Register a new user with a username, email, and password.
  * @apiParam {String} username User's desired username.
  * @apiParam {String} email User's email address.
@@ -17,7 +17,7 @@
  * @apiSuccess {Boolean} success Indicates the success of the operation.
  * @apiSuccess {String} token JWT token for the registered user.
  * @apiExample {curl} Example usage:
- *     curl -X POST http://localhost:3000/api/v1/auth/register \
+ *     curl -X POST http://localhost:3000/api/users/register \
  *     -H 'Content-Type: application/json' \
  *     -d '{"username": "johndoe", "email": "john@example.com", "password": "password123"}'
  * @apiSuccessExample {json} Success-Response:
@@ -29,14 +29,14 @@
  */
 
 /**
- * @api {post} /api/v1/auth/login Login User
+ * @api {post} /api/users/login Login User
  * @apiDescription Login a user with email and password.
  * @apiParam {String} email User's email address.
  * @apiParam {String} password User's password.
  * @apiSuccess {Boolean} success Indicates the success of the operation.
  * @apiSuccess {String} token JWT token for the authenticated user.
  * @apiExample {curl} Example usage:
- *     curl -X POST http://localhost:3000/api/v1/auth/login \
+ *     curl -X POST http://localhost:3000/api/users/login \
  *     -H 'Content-Type: application/json' \
  *     -d '{"email": "john@example.com", "password": "password123"}'
  * @apiSuccessExample {json} Success-Response:
@@ -89,14 +89,14 @@
  */
 
 /**
- * @api {post} /categories Create a New Category
+ * @api {post} /api/categories Create a New Category
  * @apiDescription Create a new category for organizing tasks.
  * @apiHeader {String} Authorization User's JWT token.
  * @apiParam {String} name Name of the category.
  * @apiSuccess {Boolean} success Indicates the success of the operation.
  * @apiSuccess {Object} data Created category details.
  * @apiExample {curl} Example usage:
- *     curl -X POST http://localhost:3000/categories \
+ *     curl -X POST http://localhost:3000/api/categories \
  *     -H 'Authorization: Bearer <Your_JWT_Token>' \
  *     -H 'Content-Type: application/json' \
  *     -d '{"name": "Work"}'
