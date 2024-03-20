@@ -1,7 +1,12 @@
 #!/bin/bash
 
 # Set your JWT token
-JWT_TOKEN="<Your_JWT_Token>"
+JWT_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmFiZTM1ZTQyMWYzZDAyNGZjZTMzMSIsImlhdCI6MTcxMDkzMTUwOSwiZXhwIjoxNzEzNTIzNTA5fQ.34Jz_lsXL7osKTRUUB_eDrU8ZMyNPc6BfVOgReJqLtc"
+# Replace <task_id> with an actual task ID
+TASK_ID="65fabe63e421f3d024fce334"
+# Replace <category_id> with an actual category ID
+CATEGORY_ID="65fabe9fe421f3d024fce337"
+
 
 # Register a new user
 echo "Registering a new user..."
@@ -39,8 +44,6 @@ curl -X POST http://localhost:3000/api/categories \
 -d '{"name": "Work", "description": "Tasks related to work"}'
 echo ""
 
-# Replace <task_id> with an actual task ID
-TASK_ID="<task_id>"
 
 # Retrieve a task by ID
 echo "Retrieving a task by ID..."
@@ -56,11 +59,6 @@ curl -X PATCH http://localhost:3000/api/tasks/$TASK_ID \
 -d '{"title": "Updated Task Title"}'
 echo ""
 
-# Delete a task
-echo "Deleting a task..."
-curl -X DELETE http://localhost:3000/api/tasks/$TASK_ID \
--H "Authorization: Bearer $JWT_TOKEN"
-echo ""
 
 # Retrieve the current user's profile
 echo "Retrieving the current user's profile..."
@@ -76,14 +74,6 @@ curl -X PATCH http://localhost:3000/api/users/profile \
 -d '{"username": "newUsername"}'
 echo ""
 
-# Delete the current user's profile
-echo "Deleting the current user's profile..."
-curl -X DELETE http://localhost:3000/api/users/profile \
--H "Authorization: Bearer $JWT_TOKEN"
-echo ""
-
-# Replace <category_id> with an actual category ID
-CATEGORY_ID="<category_id>"
 
 # Retrieve all categories for the logged-in user
 echo "Retrieving all categories..."
@@ -105,8 +95,36 @@ curl -X PATCH http://localhost:3000/api/categories/$CATEGORY_ID \
 -d '{"name": "Updated Category Name"}'
 echo ""
 
+
+# add a task to a category
+echo "Adding a task to a category..."
+curl -X PATCH http://localhost:3000/api/tasks/$TASK_ID \
+-H "Authorization: Bearer $JWT_TOKEN" \
+-H 'Content-Type: application/json' \
+-d '{"category": "'$CATEGORY_ID'"}'
+echo ""
+
+# get all tasks from a category
+echo "Getting all tasks of a category..."
+curl -X GET http://localhost:3000/api/tasks?category=$CATEGORY_ID \
+-H "Authorization: Bearer $JWT_TOKEN"
+echo ""
+
+
+# Delete a task
+echo "Deleting a task..."
+curl -X DELETE http://localhost:3000/api/tasks/$TASK_ID \
+-H "Authorization: Bearer $JWT_TOKEN"
+echo ""
+
 # Delete a category
 echo "Deleting a category..."
 curl -X DELETE http://localhost:3000/api/categories/$CATEGORY_ID \
+-H "Authorization: Bearer $JWT_TOKEN"
+echo ""
+
+# Delete the current user's profile
+echo "Deleting the current user's profile..."
+curl -X DELETE http://localhost:3000/api/users/profile \
 -H "Authorization: Bearer $JWT_TOKEN"
 echo ""

@@ -5,8 +5,21 @@ const ErrorResponse = require('../utils/errorResponse');
 // @desc    Get all tasks
 // @route   GET /api/tasks
 // @access  Private
+// @desc    Get all tasks
+// @route   GET /api/tasks
+// @access  Private
 exports.getTasks = asyncHandler(async (req, res, next) => {
-  const tasks = await Task.find({ user: req.user.id });
+  let query;
+
+  // If a category query parameter is present, filter tasks by category
+  if (req.query.category) {
+    query = Task.find({ user: req.user.id, category: req.query.category });
+  } else {
+    query = Task.find({ user: req.user.id });
+  }
+
+  const tasks = await query;
+
   res.status(200).json({ success: true, count: tasks.length, data: tasks });
 });
 
