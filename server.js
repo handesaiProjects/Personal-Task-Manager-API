@@ -27,9 +27,9 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch((err) => console.error('Could not connect to MongoDB', err));
 
 // Routes
-app.use('/users', userRoutes);
-app.use('/tasks', taskRoutes);
-app.use('/categories', categoryRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/categories', categoryRoutes);
 
 // Error handling middleware
 app.use(errorHandler);

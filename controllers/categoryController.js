@@ -3,7 +3,7 @@ const { asyncHandler } = require('../middleware/errorHandler');
 const ErrorResponse = require('../utils/errorResponse');
 
 // @desc    Create a new category
-// @route   POST /categories
+// @route   POST /api/categories
 // @access  Private
 exports.createCategory = asyncHandler(async (req, res, next) => {
   // Add user to req.body
@@ -18,7 +18,7 @@ exports.createCategory = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Get all categories
-// @route   GET /categories
+// @route   GET /api/categories
 // @access  Private
 exports.getCategories = asyncHandler(async (req, res, next) => {
   const categories = await Category.find({ user: req.user.id });
@@ -31,7 +31,7 @@ exports.getCategories = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Get single category
-// @route   GET /categories/:id
+// @route   GET /api/categories/:id
 // @access  Private
 exports.getCategory = asyncHandler(async (req, res, next) => {
   const category = await Category.findById(req.params.id);
@@ -52,7 +52,7 @@ exports.getCategory = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Update category
-// @route   PATCH /categories/:id
+// @route   PATCH /api/categories/:id
 // @access  Private
 exports.updateCategory = asyncHandler(async (req, res, next) => {
   let category = await Category.findById(req.params.id);
@@ -78,7 +78,7 @@ exports.updateCategory = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Delete category
-// @route   DELETE /categories/:id
+// @route   DELETE /api/categories/:id
 // @access  Private
 exports.deleteCategory = asyncHandler(async (req, res, next) => {
   const category = await Category.findById(req.params.id);
