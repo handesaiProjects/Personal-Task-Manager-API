@@ -3,6 +3,43 @@
 This project is a Personal Task Manager API built with Node.js, Express.js, and MongoDB. It allows users to manage their tasks through CRUD operations and organizes tasks into categories. The API uses JWT for authentication, ensuring that only authenticated users can perform operations beyond signing up and logging in.
 
 
+## Flowchart of the project's files
+
+```mermaid
+flowchart TB
+subgraph Models
+User["User (models/User.js)"]
+Task["Task (models/Task.js)"]
+Category["Category (models/Category.js)"]
+end
+subgraph Controllers
+UserController["User Controller (controllers/userController.js)"]
+TaskController["Task Controller (controllers/taskController.js)"]
+CategoryController["Category Controller (controllers/categoryController.js)"]
+end
+subgraph Routes
+UserRoutes["User Routes (routes/userRoutes.js)"]
+TaskRoutes["Task Routes (routes/taskRoutes.js)"]
+CategoryRoutes["Category Routes (routes/categoryRoutes.js)"]
+end
+subgraph Middleware
+Auth["Authentication (middleware/auth.js)"]
+ErrorHandler["Error Handling (middleware/errorHandler.js)"]
+end
+subgraph Utilities
+ErrorResponse["Error Response (utils/errorResponse.js)"]
+ApiDocumentation["API Documentation (utils/apiDocumentation.js)"]
+end
+Server["Server (server.js)"]
+Models --> Controllers
+Controllers --> Routes
+Routes --> Server
+Middleware --> Server
+Utilities --> Controllers
+Auth --> Controllers
+ErrorHandler --> Server
+```
+
 ## Sequence diagram
 
 ```mermaid
