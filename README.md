@@ -5,7 +5,7 @@ This project is a Personal Task Manager API built with Node.js, Express.js, and 
 
 ## Sequence diagram
 
-'''mermaid
+```mermaid
 sequenceDiagram
     participant Client
     participant Server
@@ -35,7 +35,7 @@ sequenceDiagram
         CategoryController-->>-Server: Response (Category Data / Error)
     end
     Server-->>-Client: Final Response
-'''
+```
 
 ## Getting Started
 
