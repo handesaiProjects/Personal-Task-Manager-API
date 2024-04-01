@@ -30,14 +30,12 @@ subgraph Utilities
 ErrorResponse["Error Response (utils/errorResponse.js)"]
 ApiDocumentation["API Documentation (utils/apiDocumentation.js)"]
 end
-Server["Server (server.js)"]
 Models --> Controllers
 Controllers --> Routes
-Routes --> Server
+Routes --> Server["Server (server.js)"]
 Middleware --> Server
+Utilities --> Middleware
 Utilities --> Controllers
-Auth --> Controllers
-ErrorHandler --> Server
 ```
 
 ## Sequence diagram
