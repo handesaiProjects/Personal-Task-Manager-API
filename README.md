@@ -2,6 +2,41 @@
 
 This project is a Personal Task Manager API built with Node.js, Express.js, and MongoDB. It allows users to manage their tasks through CRUD operations and organizes tasks into categories. The API uses JWT for authentication, ensuring that only authenticated users can perform operations beyond signing up and logging in.
 
+
+## Sequence diagram
+
+'''mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+    participant AuthMiddleware
+    participant UserController
+    participant TaskController
+    participant CategoryController
+    participant Database
+
+    Client->>+Server: Request (with JWT if protected)
+    Server->>+AuthMiddleware: Validate JWT (for protected routes)
+    AuthMiddleware-->>-Server: Next() / Error
+    alt Authentication
+        Server->>+UserController: Register / Login
+        UserController->>+Database: Query User
+        Database-->>-UserController: User Data / Error
+        UserController-->>-Server: Response (JWT / Error)
+    else Task Operations
+        Server->>+TaskController: Create / Read / Update / Delete Task
+        TaskController->>+Database: Query Task
+        Database-->>-TaskController: Task Data / Error
+        TaskController-->>-Server: Response (Task Data / Error)
+    else Category Operations
+        Server->>+CategoryController: Create / Read / Update / Delete Category
+        CategoryController->>+Database: Query Category
+        Database-->>-CategoryController: Category Data / Error
+        CategoryController-->>-Server: Response (Category Data / Error)
+    end
+    Server-->>-Client: Final Response
+'''
+
 ## Getting Started
 
 ### Prerequisites
